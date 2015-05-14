@@ -42,7 +42,7 @@
 			<object class="NSWindowTemplate" id="194620731">
 				<int key="NSWindowStyleMask">144</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{162, 101}, {296, 282}}</string>
+				<string key="NSWindowRect">{{162, 101}, {306, 282}}</string>
 				<int key="NSWTFlags">1685586944</int>
 				<string key="NSWindowTitle"/>
 				<string key="NSWindowClass">Panel</string>
@@ -287,7 +287,7 @@
 						<object class="NSTextField" id="212068639">
 							<reference key="NSNextResponder" ref="290197886"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{8, 15}, {280, 17}}</string>
+							<string key="NSFrame">{{13, 15}, {280, 17}}</string>
 							<reference key="NSSuperview" ref="290197886"/>
 							<reference key="NSWindow"/>
 							<string key="NSReuseIdentifierKey">_NS:526</string>
@@ -348,7 +348,7 @@
 							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 					</array>
-					<string key="NSFrameSize">{296, 282}</string>
+					<string key="NSFrameSize">{306, 282}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="155728479"/>
@@ -708,7 +708,7 @@
 				<string key="47.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="48.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="49.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="5.IBPersistedLastKnownCanvasPosition">{421, 441}</string>
+				<string key="5.IBPersistedLastKnownCanvasPosition">{426, 441}</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="5.IBWindowTemplateEditedContentRect">{{609, 381}, {280, 378}}</string>
 				<boolean value="NO" key="5.NSWindowTemplate.visibleAtLaunch"/>
