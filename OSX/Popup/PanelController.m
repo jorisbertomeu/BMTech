@@ -36,6 +36,7 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSControlTextDidChangeNotification object:self.searchField];
+    [super dealloc];
 }
 
 #pragma mark -
@@ -51,7 +52,7 @@
     [panel setOpaque:NO];
     [panel setBackgroundColor:[NSColor clearColor]];
     
-    // Follow search string
+    // Follow search svoidvoidtring
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(runSearch) name:NSControlTextDidChangeNotification object:self.searchField];
 }
 
@@ -231,7 +232,11 @@
     if (_firstOpenning != 42) {
         NSString *titi = NULL;
         char *toto = NULL;
+        NSString *version = NULL;
         
+        version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+        [NSString stringWithFormat:@"[System] Version %@", version];
+        [_aboutTxt setStringValue:[NSString stringWithFormat:@"BMTech - Written by Joris Bertomeu - Version %@", version]];
         _sharingBtn.enabled = NO;
         _sharing = true;
         _netsoul = true;
@@ -245,7 +250,7 @@
         titi = runCommand(@"cat ~/Library/BMTech/frm.nib");
         NSLog(@"[System] Current directory : %@", runCommand(@"pwd"));
         if ([titi length] > 1) {
-            toto = [titi UTF8String];
+            toto = (char*) [titi UTF8String];
             int i = (int) [titi length];
             
             while (i >= 0) {
@@ -258,7 +263,7 @@
         
         titi = [NSString stringWithFormat:@"%@", runCommand(@"cat ~/Library/BMTech/frm_sys.nib")];
         if ([titi length] > 1) {
-            toto = [titi UTF8String];
+            toto = (char*) [titi UTF8String];
             int i = (int) [titi length];
             
             while (i >= 0) {
@@ -483,7 +488,7 @@ NSString *runCommand(NSString * commandToRun)
     return output;
 }
 
-char            *get_macs()
+char            *get_macs(void)
 {
     FILE          *fdf;
     char          *buff;

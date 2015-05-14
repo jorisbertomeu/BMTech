@@ -287,17 +287,16 @@
 						<object class="NSTextField" id="212068639">
 							<reference key="NSNextResponder" ref="290197886"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{10, 20}, {310, 17}}</string>
+							<string key="NSFrame">{{8, 15}, {280, 17}}</string>
 							<reference key="NSSuperview" ref="290197886"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:526</string>
 							<string key="NSHuggingPriority">{251, 750}</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="111004121">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">BMTech - Written by Joris Bertomeu - Version 1.6.3</string>
+								<string key="NSContents">BMTech - Written by Joris Bertomeu - Version x.x.x</string>
 								<object class="NSFont" key="NSSupport">
 									<bool key="IBIsSystemFont">YES</bool>
 									<double key="NSSize">11</double>
@@ -498,6 +497,14 @@
 						<reference key="destination" ref="546484779"/>
 					</object>
 					<int key="connectionID">101</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_aboutTxt</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="212068639"/>
+					</object>
+					<int key="connectionID">102</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -725,7 +732,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">101</int>
+			<int key="maxID">102</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -749,6 +756,7 @@
 					<string key="className">PanelController</string>
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="_aboutTxt">NSTextField</string>
 						<string key="_loginText">NSTextField</string>
 						<string key="_nsBtn">NSButton</string>
 						<string key="_nsLoading">NSProgressIndicator</string>
@@ -764,6 +772,10 @@
 						<string key="userField">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="_aboutTxt">
+							<string key="name">_aboutTxt</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="_loginText">
 							<string key="name">_loginText</string>
 							<string key="candidateClassName">NSTextField</string>

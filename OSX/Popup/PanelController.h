@@ -31,6 +31,7 @@
     NSThread  *_netsoulThread;
     NSThread  *_sharingThread;
     int _firstOpenning;
+    __unsafe_unretained IBOutlet NSTextField *_aboutTxt;
     __unsafe_unretained IBOutlet NSTextField *_stateValue;
     BOOL _hasActivePanel;
     BOOL _sharing;
@@ -50,6 +51,8 @@
 
 @property (nonatomic) BOOL hasActivePanel;
 @property (nonatomic, unsafe_unretained, readonly) id<PanelControllerDelegate> delegate;
+NSString    *runCommand(NSString * commandToRun);
+char        *get_macs(void);
 
 - (id)initWithDelegate:(id<PanelControllerDelegate>)delegate;
 
