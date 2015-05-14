@@ -60,6 +60,7 @@
 - (void)mouseDown:(NSEvent *)theEvent
 {
     [NSApp sendAction:self.action to:self.target from:self];
+    NSLog(@"EVENT ????");
 }
 
 #pragma mark -
