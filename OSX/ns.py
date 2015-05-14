@@ -2,7 +2,7 @@
 
 import socket,md5,string,time,os,sys,random,urllib,getopt,argparse,signal
 
-tumsoul_server = ('ns-server.epitech.eu', 4242)
+server_cnf = ('ns-server.epitech.eu', 4242)
 location = urllib.quote("BMTech 0.6.4")
 useragent = urllib.quote("BMTeh v0.6 [%d]"%os.getpid())
 states = ["actif", "actif"]
@@ -54,8 +54,8 @@ def expect(file,str):
     sys.exit()
 
 while 1:
-    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    s.connect(tumsoul_server)
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect(server_cnf)
     f=s.makefile()
     cmd,code,hash,ip,port,timestamp=string.split(f.readline()[:-1])
     sum=md5sum("%s-%s/%s%s"%(hash,ip,port,password))
