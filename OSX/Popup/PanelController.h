@@ -28,6 +28,7 @@
     __unsafe_unretained IBOutlet NSButton *_nsSharingBtn;
     __unsafe_unretained IBOutlet NSButton *_nsBtn;
     __unsafe_unretained IBOutlet NSButton *_sharingBtn;
+    NSString *_login;
     NSThread  *_netsoulThread;
     NSThread  *_sharingThread;
     int _firstOpenning;

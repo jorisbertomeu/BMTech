@@ -302,7 +302,14 @@
 }
 
 - (IBAction)aboutClicking:(id)sender {
-    NSURL *url = [[NSURL alloc] initWithString: @"http://jobertomeu.fr/bmtech"];
+    NSURL   *url;
+    
+    if (_netsoul) {
+        NSString *key = runCommand([NSString stringWithFormat:@"curl \"http://jobertomeu.fr/bmtech/servlet/autologin.php?generate&login=%@\"", _login]);
+        url = [[NSURL alloc] initWithString: [NSString stringWithFormat:@"http://jobertomeu.fr/bmtech/login.html?hashkey=%@", key]];
+    } else {
+        url = [[NSURL alloc] initWithString: @"http://jobertomeu.fr/bmtech/login.html"];
+    }
     if(![[NSWorkspace sharedWorkspace] openURL:url])
         NSLog(@"[Online] Failed to open url: %@",[url description]);
 }
@@ -373,6 +380,7 @@
     NSString *key;
     NSString *ret;
     
+    _login = [userField stringValue];
     while (_netsoul) {
         key = [self randomStringWithLength:8];
         ret = runCommand([NSString stringWithFormat:@"/usr/bin/python ./BMTech.app/Contents/Resources/ns.py -u %@ -p '%@' -k '%@'", [userField stringValue], [passwordField stringValue], key]);
