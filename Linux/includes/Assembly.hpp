@@ -3,9 +3,11 @@
 
 # include	<Conf.hh>
 # include	<rapidjson/document.h>
+# include	<rapidjson/filereadstream.h>
 
 # include	<string>
 
+using namespace rapidjson;
 class		Assembly
 {
 private:
@@ -38,9 +40,24 @@ public:
   };
 
   void		checkForUpdate() {
+    FILE	*fp;
+    char	readBuffer[4096];
+    Document	d;
+    
     std::cout << "Checking for update ...";
-
-    Utils::httpRequest(this->_updateURL, TMP_FILE_UPDATE_REQUEST);
+    try {
+      Utils::httpRequest(this->_updateURL, TMP_FILE_UPDATE_REQUEST);
+    } catch (const std::exception &e) {
+      std::cout << "\tError : " << e.what() << std::endl;
+    };
+    if (!(fp = fopen(TMP_FILE_UPDATE_REQUEST, "rb"))) {
+      std::cout << "\tError while fetching data" << std::endl;
+    }
+    FileReadStream is(fp, readBuffer, sizeof(readBuffer));
+    d.ParseStream(is);
+    if (!d.IsObject())
+      std::cout << "\tBad API Result" << std::endl;
+    fclose(fp);
   };
 };
 
