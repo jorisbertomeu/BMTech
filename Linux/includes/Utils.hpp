@@ -8,13 +8,13 @@
 class		Utils
 {
 public:
-  static std::list<std::string>& explode(const std::string& str, char sep)
+  static std::list<std::string> *explode(const std::string& str, char sep)
   {
     std::list<std::string>	*tokens = new std::list<std::string>;
     std::istringstream		split(str);
     
     for (std::string each; std::getline(split, each, sep); tokens->push_back(each));
-    return (*tokens);
+    return (tokens);
   };
 };
 
