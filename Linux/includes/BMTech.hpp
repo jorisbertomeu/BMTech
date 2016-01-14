@@ -5,14 +5,21 @@
 # include	<iostream>
 
 # include	<Parameters.hpp>
+# include	<Assembly.hpp>
 
 class		BMTech
 {
 private:
   Parameters	_parameters;
+  Assembly	_assembly;
   
 public:
-  explicit	BMTech() {};
+  explicit	BMTech() {
+    this->_assembly.set("0.1", "Joris Bertomeu - joris.bertomeu@epitech.eu", "BMTech");
+    this->_assembly.setUpdateURL("http://jobertomeu.fr/bmtech/servlets/update.php");
+    this->_assembly.checkForUpdate();
+  };
+  
   virtual	~BMTech() {};
   void		init(int ac, char **argv) {
     try {
