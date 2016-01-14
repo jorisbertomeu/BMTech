@@ -6,7 +6,6 @@ BMTech
 
 #### Usage Example
 > **Usage Example:** ./BMTech -t 46fs5c4ds2c1sd54fc8sd54hyuj5 --login bertom_j -c /etc/BMTech.yaml 
-----------
 
 Share My Location ?
 -------------
