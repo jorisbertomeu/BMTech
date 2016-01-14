@@ -22,6 +22,8 @@ public:
     this->addParameter("--login:-l", &Parameters::parseLogin,
 		       "Specify student's login for authentication");
     this->addParameter("--token:-t", &Parameters::parseToken);
+    this->addParameter("--help:-h", &Parameters::showHelp,
+		       "Show this Usage");
   };
   
   void		verify() {
@@ -56,6 +58,14 @@ private:
     return (1);
   };
 
+  int		showHelp(int ac, char **argv, int idx) {
+    (void) ac;
+    (void) argv;
+    (void) idx;
+    this->showUsage();
+    exit(0);
+    return (0);
+  };
 };
 
 #endif

@@ -47,6 +47,20 @@ public:
 	throw (std::logic_error("Unknown argument \"" + std::string(argv[i]) + "\""));
     }
   };
+
+  void		showUsage() {
+    std::cout << "Usage :" << std::endl << std::endl;
+    for (mMap::iterator it = this->_ptrFunc.begin(); it != this->_ptrFunc.end(); ++it) {
+      std::cout << "\t[";
+      for (std::list<std::string>::iterator it2 = reinterpret_cast<t_parameter*>(*it)->options->begin();
+	   it2 != reinterpret_cast<t_parameter*>(*it)->options->end(); ++it2) {
+	std::cout << (*it2);
+	if (it2 != --reinterpret_cast<t_parameter*>(*it)->options->end())
+	  std::cout << "|";
+      }
+      std::cout << "]\t\t: " << *(reinterpret_cast<t_parameter*>(*it)->desc) << std::endl;
+    };
+  };
   
 protected:
   void		addParameter(const std::string &option, mPtr ptr) {
