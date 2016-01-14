@@ -68,7 +68,8 @@ public:
       std::cout << "\tYou are up-to-date !" << std::endl;
     else {
       std::cout << "\tWTF ? Are you Marty Mcfly ?" << std::endl;
-      std::cout << "Sorry, but you have to go away ... Exiting" << std::endl;
+      std::cout << "Sorry, but you have to go away" << std::endl;
+      exit (-1);
     }
     fclose(fp);
   };
