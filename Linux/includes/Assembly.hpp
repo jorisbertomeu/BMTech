@@ -61,7 +61,7 @@ public:
       return;
     }
     if (atof(d["version"].GetString()) > atof(this->_version.c_str())) {
-      std::cout << "\t\033[32mNew version (" << d["version"].GetString() << ") is available !\033[0m" << std::endl;
+      std::cout << "\t\033[32mNew version (" << d["version"].GetString() << ") named \"" << d["name"].GetString() << "\" is available !\033[0m" << std::endl;
       std::cout << "\033[31m/!\\ You MUST update your BMTech ! Please, go to http://jobertomeu.fr/bmtech\033[0m" << std::endl;
       exit (-1);
     } else if (atof(d["version"].GetString()) == atof(this->_version.c_str()))

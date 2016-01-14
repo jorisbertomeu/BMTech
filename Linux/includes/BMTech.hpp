@@ -15,7 +15,7 @@ private:
   
 public:
   explicit	BMTech() {
-    this->_assembly.set("1.4", "Joris Bertomeu - joris.bertomeu@epitech.eu", "BMTech");
+    this->_assembly.set(D_VERSION, "Joris Bertomeu - joris.bertomeu@epitech.eu", "BMTech");
     this->_assembly.setUpdateURL("http://jobertomeu.fr/bmtech/servlet/getLastVersion.php");
     this->_assembly.checkForUpdate();
   };
