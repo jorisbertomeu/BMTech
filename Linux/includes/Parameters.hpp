@@ -61,7 +61,7 @@ public:
 
 private:
   std::pair<std::list<std::string>, mPtr>	generatePtrFunc(const std::string &expr, mPtr ptr) {
-    std::list<std::string>			opt = Utils::explode(expr);
+    std::list<std::string>			opt = Utils::explode(expr, ':');
     
     return (std::pair<std::list<std::string>, mPtr>(opt, ptr));
   };
