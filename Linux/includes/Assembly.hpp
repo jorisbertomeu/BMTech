@@ -61,11 +61,11 @@ public:
       return;
     }
     if (atof(d["version"].GetString()) > atof(this->_version.c_str())) {
-      std::cout << "\t\033[32mNew version (" << d["version"].GetString() << ") named \"" << d["name"].GetString() << "\" is available !\033[0m" << std::endl;
-      std::cout << "\033[31m/!\\ You MUST update your BMTech ! Please, go to http://jobertomeu.fr/bmtech\033[0m" << std::endl;
+      std::cout << "\t\033[31mNew version (" << d["version"].GetString() << ") named \"" << d["name"].GetString() << "\" is available !\033[0m" << std::endl;
+      std::cout << "/!\\ You MUST update your BMTech ! Please, go to http://jobertomeu.fr/bmtech" << std::endl;
       exit (-1);
     } else if (atof(d["version"].GetString()) == atof(this->_version.c_str()))
-      std::cout << "\tYou are up-to-date !" << std::endl;
+      std::cout << "\t\033[32mYou are up-to-date !\033[0m" << std::endl;
     else {
       std::cout << "\tWTF ? Are you Marty Mcfly ?" << std::endl;
       std::cout << "Sorry, but you have to go away" << std::endl;
