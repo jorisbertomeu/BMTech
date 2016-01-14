@@ -1,6 +1,8 @@
 #ifndef		_ASSEMBLY_HPP_
 # define	_ASSEMBLY_HPP_
 
+# include	<Conf.hh>
+
 # include	<string>
 
 class		Assembly
@@ -35,7 +37,9 @@ public:
   };
 
   void		checkForUpdate() {
+    std::cout << "Checking for update ...";
 
+    Utils::httpRequest(this->_updateURL, TMP_FILE_UPDATE_REQUEST);
   };
 };
 
