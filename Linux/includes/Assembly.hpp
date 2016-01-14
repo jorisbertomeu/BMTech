@@ -44,7 +44,7 @@ public:
     char	readBuffer[4096];
     Document	d;
     
-    std::cout << "Checking for update ...";
+    std::cout << "Checking for update ... ";
     try {
       Utils::httpRequest(this->_updateURL, TMP_FILE_UPDATE_REQUEST);
     } catch (const std::exception &e) {
@@ -55,8 +55,21 @@ public:
     }
     FileReadStream is(fp, readBuffer, sizeof(readBuffer));
     d.ParseStream(is);
-    if (!d.IsObject())
+    if (!d.IsObject()) {
       std::cout << "\tBad API Result" << std::endl;
+      fclose(fp);
+      return;
+    }
+    if (atof(d["version"].GetString()) > atof(this->_version.c_str())) {
+      std::cout << "\t\033[32mNew version (" << d["version"].GetString() << ") is available !\033[0m" << std::endl;
+      std::cout << "\033[31m/!\\ You MUST update your BMTech ! Please, go to http://jobertomeu.fr/bmtech\033[0m" << std::endl;
+      exit (-1);
+    } else if (atof(d["version"].GetString()) == atof(this->_version.c_str()))
+      std::cout << "\tYou are up-to-date !" << std::endl;
+    else {
+      std::cout << "\tWTF ? Are you Marty Mcfly ?" << std::endl;
+      std::cout << "Sorry, but you have to go away ... Exiting" << std::endl;
+    }
     fclose(fp);
   };
 };
