@@ -2,6 +2,7 @@
 # define	_ASSEMBLY_HPP_
 
 # include	<Conf.hh>
+# include	<rapidjson/document.h>
 
 # include	<string>
 

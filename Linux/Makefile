@@ -1,6 +1,6 @@
 CXX		=	g++ -g3
 
-CXXFLAGS	+=	-W -Wextra -Wall -Iincludes -I.`pkg-config --cflags libcurl`
+CXXFLAGS	+=	-W -Wextra -Wall -Iincludes -I.`pkg-config --cflags libcurl` -Irapidjson/include
 
 RM		=	rm -f
 
