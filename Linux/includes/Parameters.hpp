@@ -6,6 +6,8 @@
 # include	<map>
 # include	<stdexcept>
 # include	<unistd.h>
+# include	<fstream>
+# include	<yaml-cpp/yaml.h>
 
 # include	<IParameters.hpp>
 
@@ -28,25 +30,40 @@ public:
   };
   
   void		verify() {
-    std::cout << "Checking those parameters:" << std::endl << std::endl;
+    bool	validCF = false;
+    
+    std::cout << "Checking those parameters :" << std::endl;
 
     //Checking for file exists
     if (access(this->_configFile.c_str(), F_OK) != -1) {
       std::cout << "\t\033[32m[OK]";
+      validCF = true;
     } else {
       std::cout << "\t\033[31m[KO]";
     }
-    std::cout << "\033[0m Config File\t : " << this->_configFile << std::endl;
-
+    std::cout << "\033[0m Config File existance\t : " << this->_configFile << std::endl;
+    if (validCF) {
+      if (parseFile())
+	std::cout << "\t\033[32m[OK]";
+      else
+	std::cout << "\t\033[31m[KO]";
+    } else
+      std::cout << "\t\033[31m[KO]";
+    std::cout << "\033[0m Config File validity\t : " << this->_configFile << std::endl;
+    
     //Checking for Login exists
-    std::cout << "\t\033[32m[OK]\033[0m Login\t\t : " << this->_login << std::endl;
+    std::cout << "\t\033[32m[OK]\033[0m Login\t\t\t : " << this->_login << std::endl;
     
     //Checking for Token API for this login
-    std::cout << "\t\033[31m[KO]\033[0m Token\t\t : " << this->_token << std::endl;
+    std::cout << "\t\033[31m[KO]\033[0m Token\t\t\t : " << this->_token << std::endl;
   };
 
 private:
-    int		parseConfigFile(int ac, char **argv, int idx) {
+  bool		parseFile() {
+    return (true);
+  };
+  
+  int		parseConfigFile(int ac, char **argv, int idx) {
     if (ac > idx + 1)
       this->_configFile = std::string(argv[idx + 1]);
     else

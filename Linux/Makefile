@@ -1,6 +1,6 @@
 CXX		=	g++ -g3
 
-CXXFLAGS	+=	-W -Wextra -Wall -Iincludes -I.`pkg-config --cflags libcurl` -Irapidjson/include
+CXXFLAGS	+=	-W -Wextra -Wall -Iincludes -I.`pkg-config --cflags libcurl` -Irapidjson/include -Iyaml-cpp/include -std=gnu++11
 
 RM		=	rm -f
 
@@ -14,7 +14,7 @@ all:		$(NOM)
 
 $(NOM):		$(OBJ)
 		@echo -e "\n > COMPILATION DES .CPP BMTECH EN COURS\n"
-		$(CXX) -o $(NOM) $(OBJ) -ldl `pkg-config --libs libcurl`
+		$(CXX) -o $(NOM) $(OBJ) -ldl -Lyaml-cpp/build -lyaml-cpp `pkg-config --libs libcurl`
 		@echo -e "\n > COMPILATION DES .CPP BMTECH TERMINEE"
 
 clean:

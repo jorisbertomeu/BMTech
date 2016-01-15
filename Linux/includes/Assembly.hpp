@@ -44,30 +44,30 @@ public:
     char	readBuffer[4096];
     Document	d;
     
-    std::cout << "Checking for update ... ";
+    std::cout << "Checking for update : ";
     try {
       Utils::httpRequest(this->_updateURL, TMP_FILE_UPDATE_REQUEST);
     } catch (const std::exception &e) {
-      std::cout << "\tError : " << e.what() << std::endl;
+      std::cout << "Error : " << e.what() << std::endl;
     };
     if (!(fp = fopen(TMP_FILE_UPDATE_REQUEST, "rb"))) {
-      std::cout << "\tError while fetching data" << std::endl;
+      std::cout << "Error while fetching data" << std::endl;
     }
     FileReadStream is(fp, readBuffer, sizeof(readBuffer));
     d.ParseStream(is);
     if (!d.IsObject()) {
-      std::cout << "\tBad API Result" << std::endl;
+      std::cout << "Bad API Result" << std::endl;
       fclose(fp);
       return;
     }
     if (atof(d["version"].GetString()) > atof(this->_version.c_str())) {
-      std::cout << "\t\033[31mNew version (" << d["version"].GetString() << ") named \"" << d["name"].GetString() << "\" is available !\033[0m" << std::endl;
+      std::cout << "\033[31mNew version (" << d["version"].GetString() << ") named \"" << d["name"].GetString() << "\" is available !\033[0m" << std::endl;
       std::cout << "/!\\ You MUST update your BMTech ! Please, go to http://jobertomeu.fr/bmtech" << std::endl;
       exit (-1);
     } else if (atof(d["version"].GetString()) == atof(this->_version.c_str()))
-      std::cout << "\t\033[32mYou are up-to-date !\033[0m" << std::endl;
+      std::cout << "\033[32mYou are up-to-date !\033[0m" << std::endl;
     else {
-      std::cout << "\tWTF ? Are you Marty Mcfly ?" << std::endl;
+      std::cout << "WTF ? Are you Marty Mcfly ?" << std::endl;
       std::cout << "Sorry, but you have to go away" << std::endl;
       exit (-1);
     }
