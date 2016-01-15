@@ -1,6 +1,9 @@
 language: bash
 
+sudo: required
+
 before_script:
+ - apt-get install -f clang++
  - cd Linux
  - make re
 
