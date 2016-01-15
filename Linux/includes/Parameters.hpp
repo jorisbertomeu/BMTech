@@ -52,14 +52,48 @@ public:
     std::cout << "\033[0m Config File validity\t : " << this->_configFile << std::endl;
     
     //Checking for Login exists
-    std::cout << "\t\033[32m[OK]\033[0m Login\t\t\t : " << this->_login << std::endl;
-    
+    if (this->_login.length() == 0)
+      std::cout << "\t\033[31m[KO]";
+    else {
+     if (this->validLogin())
+	std::cout << "\t\033[32m[OK]";
+      else
+	std::cout << "\t\033[31m[KO]";
+     }
+    std::cout << "\033[0m Login\t\t\t : " << ((this->_login.length() == 0) ? "<empty>" :
+					      this->_login) << std::endl;
+
     //Checking for Token API for this login
-    std::cout << "\t\033[31m[KO]\033[0m Token\t\t\t : " << this->_token << std::endl;
+    if (this->_token.length() == 0)
+      std::cout << "\t\033[31m[KO]";
+    else {
+      if (this->validToken())
+	std::cout << "\t\033[32m[OK]";
+      else
+	std::cout << "\t\033[31m[KO]";
+    }
+    std::cout << "\033[0m Token\t\t\t : " << ((this->_token.length() == 0) ? "<empty>" :
+					      this->_token) << std::endl;
   };
 
 private:
-  bool		parseFile() {
+  bool			validLogin() {
+    return true;
+  };
+
+  bool			validToken() {
+    return false;
+  };
+  
+  bool			parseFile() {
+    YAML::Node		config = YAML::LoadFile(this->_configFile);
+
+    if (config["login"]) {
+      this->_login = std::string(config["login"].as<std::string>());
+    }
+    if (config["token"]) {
+      this->_token = std::string(config["token"].as<std::string>());
+    }
     return (true);
   };
   
