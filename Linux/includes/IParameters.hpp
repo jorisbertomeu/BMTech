@@ -15,15 +15,23 @@ class		IParameters
 private:
   mMap		_ptrFunc;
   Parameters	*_me;
-
+  
   typedef struct		s_parameter
   {
     std::string			*desc;
     std::list<std::string>	*options;
     mPtr			ptr;
   }				t_parameter;
+
+  IParameters() {
+    this->_isOk = false;
+  };
   
 public:
+  bool		isOk() const {
+    return (this->_isOk);
+  };
+  
   void		parse(int ac, char **argv) {
     int		i;
     bool	founded;
@@ -81,6 +89,9 @@ protected:
     tmp->desc = new std::string(desc);
     return (tmp);
   };
+
+  bool		_isOk;
+  
 };
 
 #endif

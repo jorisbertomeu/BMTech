@@ -35,6 +35,7 @@ public:
   
   void		verify() {
     bool	validCF = false;
+    int		tests = 0;
     
     std::cout << "Checking those parameters :" << std::endl;
 
@@ -56,28 +57,38 @@ public:
     std::cout << "\033[0m Config File validity\t : " << ((this->_configFile.length() == 0) ? "<empty>" : this->_configFile) << std::endl;
     
     //Checking for Login exists
-    if (this->_login.length() == 0)
+    if (this->_login.length() == 0) {
       std::cout << "\t\033[31m[KO]";
-    else {
-     if (this->validLogin())
+      tests++;
+    } else {
+      if (this->validLogin())
 	std::cout << "\t\033[32m[OK]";
-      else
+      else {
 	std::cout << "\t\033[31m[KO]";
-     }
+	tests++;
+      }
+    }
     std::cout << "\033[0m Login\t\t\t : " << ((this->_login.length() == 0) ? "<empty>" :
 					      this->_login) << std::endl;
 
     //Checking for Token API for this login
-    if (this->_token.length() == 0)
+    if (this->_token.length() == 0) {
       std::cout << "\t\033[31m[KO]";
-    else {
+      tests++;
+    } else {
       if (this->validToken())
 	std::cout << "\t\033[32m[OK]";
-      else
+      else {
 	std::cout << "\t\033[31m[KO]";
+	tests++;
+      }
     }
     std::cout << "\033[0m Token\t\t\t : " << ((this->_token.length() == 0) ? "<empty>" :
 					      this->_token) << std::endl;
+    if (tests != 0)
+      std::cout << std::to_string(tests) << "/2 mandatories failed ..." << std::endl;
+    else
+      this->_isOk = true;
   };
 
 private:
