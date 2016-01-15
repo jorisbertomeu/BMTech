@@ -24,10 +24,13 @@ private:
   std::string	_login;
   std::string	_token;
   std::string	_incoming;
+  bool		_airtech;
+  std::string	_airtechServer;
   
 public:
   explicit	Parameters() : IParameters(this) {
     setlocale(LC_ALL, "");
+    this->_airtech = false;
     this->addParameter("--config:-c", &Parameters::parseConfigFile,
 		       "Allow to give a YML config file with all options described");
     this->addParameter("--login:-l", &Parameters::parseLogin,
@@ -36,6 +39,8 @@ public:
 		       "You MUST Specify your token API associated to your login");
     this->addParameter("--incoming:-i", &Parameters::parseIncoming,
 		       "Incoming folder destination for AirTech (c)");
+    this->addParameter("--airtech:-a", &Parameters::parseAirtech,
+		       "Enable Airtech mechanism - AirDrop Like, multiOS");
     this->addParameter("--help:-h", &Parameters::showHelp,
 		       "Show this Usage");
   };
@@ -123,7 +128,19 @@ public:
 	      << ((this->_incoming.length() == 0) ? "<empty>" :
 		  this->_incoming) << "\033[0m"  << std::endl;
 
-
+    //Checking for Airtech server availability
+    if (this->_airtech) {
+      underline = false;
+      if (this->checkAirtechServer())
+	std::cout << "\t\033[32m[OK]";
+      else {
+	std::cout << "\t\033[31m[KO]";
+	underline = true;
+      }
+      std::cout << "\033[0m AirTech Server\t\t : " << ((underline) ? "\033[33m\033[4m" : "")
+		<< ((underline) ? "Down" : "Active") << "\033[0m"  << std::endl;
+    }
+      
     if (tests != 0)
       std::cout << std::to_string(tests) << "/2 mandatories failed ..." << std::endl;
     else
@@ -131,6 +148,14 @@ public:
   };
 
 private:
+  bool			checkAirtechServer() {
+    if (this->_airtechServer.length() == 0) {
+      std::cerr << "\t\t\t\t\t    \u2B10 You must specify an Airtech Server !" << std::endl;
+      return false;
+    }
+    return true;
+  };
+  
   bool			validIncoming() {
     struct stat		info;
 
@@ -216,7 +241,13 @@ private:
     if (config["incoming"]) {
       this->_incoming = std::string(config["incoming"].as<std::string>());
     }
-    return (true);
+   if (config["airtech"]) {
+      this->_airtech = config["airtech"].as<bool>();
+    }
+   if (config["airtech_server"]) {
+     this->_airtechServer = std::string(config["airtech_server"].as<std::string>());
+    }
+   return (true);
   };
   
   int		parseConfigFile(int ac, char **argv, int idx) {
@@ -249,6 +280,14 @@ private:
     else
       throw (std::logic_error("[-i|--incoming] required a path"));
     return (1);
+  };
+
+  int		parseAirtech(int ac, char **argv, int idx) {
+    (void) ac;
+    (void) argv;
+    (void) idx;
+    this->_airtech = true;
+    return (0);
   };
   
   int		showHelp(int ac, char **argv, int idx) {
