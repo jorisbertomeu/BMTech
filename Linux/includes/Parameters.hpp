@@ -51,7 +51,7 @@ public:
     
     std::cout << "Checking those parameters :" << std::endl;
 
-    //Checking for file exists
+    //Checking if file exists
     if (access(this->_configFile.c_str(), F_OK) != -1) {
       std::cout << "\t\033[32m[OK]";
       validCF = true;
@@ -74,60 +74,14 @@ public:
 	      << ((this->_configFile.length() == 0) ? "<empty>" : this->_configFile) << "\033[0m" << std::endl;
     
     //Checking for Login exists
-    underline = false;
-    if (this->_login.length() == 0) {
-      std::cout << "\t\033[31m[KO]";
-      tests++;
-      underline = true;
-    } else {
-      if (this->validLogin())
-	std::cout << "\t\033[32m[OK]";
-      else {
-	std::cout << "\t\033[31m[KO]";
-	tests++;
-	underline = true;
-      }
-    }
-    std::cout << "\033[0m Login\t\t\t : "  << ((underline) ? "\033[33m\033[4m" : "")
-	      << ((this->_login.length() == 0) ? "<empty>" :
-		  this->_login) << "\033[0m" << std::endl;
+    this->genericCheck(this->_login, "Login integrity", &Parameters::validLogin);
 
     //Checking for Token API for this login
-    underline = false;
-    if (this->_token.length() == 0) {
-      std::cout << "\t\033[31m[KO]";
-      tests++;
-      underline = true;
-    } else {
-      if (this->validToken())
-	std::cout << "\t\033[32m[OK]";
-      else {
-	std::cout << "\t\033[31m[KO]";
-	tests++;
-	underline = true;
-      }
-    }
-    std::cout << "\033[0m Token\t\t\t : " << ((underline) ? "\033[33m\033[4m" : "")
-	      << ((this->_token.length() == 0) ? "<empty>" :
-		  this->_token) << "\033[0m" << std::endl;
+    this->genericCheck(this->_token, "Token validity", &Parameters::validToken);
     
     //Checking for incoming folder for AirTech
-    underline = false;
-    if (this->_incoming.length() == 0) {
-      std::cout << "\t\033[31m[KO]";
-      underline = true;
-    } else {
-      if (this->validIncoming())
-	std::cout << "\t\033[32m[OK]";
-      else {
-	std::cout << "\t\033[31m[KO]";
-	underline = true;
-      }
-    }
-    std::cout << "\033[0m Incoming folder\t\t : " << ((underline) ? "\033[33m\033[4m" : "")
-	      << ((this->_incoming.length() == 0) ? "<empty>" :
-		  this->_incoming) << "\033[0m"  << std::endl;
-
+    this->genericCheck(this->_incoming, "Incoming Folder", &Parameters::validIncoming);
+    
     //Checking for Airtech server availability
     if (this->_airtech) {
       underline = false;

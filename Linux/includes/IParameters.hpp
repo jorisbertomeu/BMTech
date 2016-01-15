@@ -78,6 +78,26 @@ protected:
   void		addParameter(const std::string &option, mPtr ptr, const std::string &desc) {
     this->_ptrFunc.push_back(this->generatePtrFunc(option, ptr, desc));
   };
+
+  void		genericCheck(const std::string &param, const std::string &display,
+			     bool (Parameters::*func)()) {
+    bool	underline = false;
+
+    if (param.length() == 0) {
+      std::cout << "\t\033[31m[KO]";
+      underline = true;
+    } else {
+      if ((this->_me->*func)())
+	std::cout << "\t\033[32m[OK]";
+      else {
+	std::cout << "\t\033[31m[KO]";
+	underline = true;
+      }
+    }
+    std::cout << "\033[0m " << display << "\t\t : " << ((underline) ? "\033[33m\033[4m" : "")
+	      << ((param.length() == 0) ? "<empty>" :
+		  param) << "\033[0m"  << std::endl;
+  };
   
   explicit	IParameters(Parameters *me) : _me(me) {};
   
