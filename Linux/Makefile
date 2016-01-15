@@ -1,4 +1,4 @@
-CXX		=	g++ -g3
+CXX		=	clang++ -g3
 
 CXXFLAGS	+=	-W -Wextra -Wall -Iincludes -I.`pkg-config --cflags libcurl` -Irapidjson/include -Iyaml-cpp/include -std=gnu++11
 
