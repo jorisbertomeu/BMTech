@@ -8,9 +8,13 @@
 # include	<unistd.h>
 # include	<fstream>
 # include	<yaml-cpp/yaml.h>
+# include	<rapidjson/document.h>
+# include	<rapidjson/filereadstream.h>
 
 # include	<IParameters.hpp>
+# include	<Conf.hh>
 
+using namespace rapidjson;
 class		Parameters :	public IParameters
 {
 private:
@@ -39,17 +43,17 @@ public:
       std::cout << "\t\033[32m[OK]";
       validCF = true;
     } else {
-      std::cout << "\t\033[31m[KO]";
+      std::cout << "\t\033[36m[KO]";
     }
-    std::cout << "\033[0m Config File existance\t : " << this->_configFile << std::endl;
+    std::cout << "\033[0m Config File existance\t : " << ((this->_configFile.length() == 0) ? "<empty>" : this->_configFile) << std::endl;
     if (validCF) {
       if (parseFile())
 	std::cout << "\t\033[32m[OK]";
       else
 	std::cout << "\t\033[31m[KO]";
     } else
-      std::cout << "\t\033[31m[KO]";
-    std::cout << "\033[0m Config File validity\t : " << this->_configFile << std::endl;
+      std::cout << "\t\033[33m[??]";
+    std::cout << "\033[0m Config File validity\t : " << ((this->_configFile.length() == 0) ? "<empty>" : this->_configFile) << std::endl;
     
     //Checking for Login exists
     if (this->_login.length() == 0)
@@ -78,10 +82,60 @@ public:
 
 private:
   bool			validLogin() {
-    return true;
+    FILE		*fp;
+    char		readBuffer[4096];
+    Document		d;
+    
+    try {
+      Utils::httpRequest(URL_SERVLET_GETLOGINS, TMP_FILE_GETLOGINS_REQUEST);
+    } catch (const std::exception &e) {
+      std::cerr << "Error : " << e.what() << std::endl;
+      return false;
+    }
+    if (!(fp = fopen(TMP_FILE_GETLOGINS_REQUEST, "rb"))) {
+      std::cerr << "Error while fetching data" << std::endl;
+      return false;
+    }
+    FileReadStream is(fp, readBuffer, sizeof(readBuffer));
+    d.ParseStream(is);
+    if (!d.IsObject()) {
+      std::cerr << "Bad API Result" << std::endl;
+      fclose(fp);
+      return false;
+    }
+    for (Value::ConstValueIterator itr = d["results"].Begin(); itr != d["results"].End(); ++itr) {
+      if (!std::string(itr->GetString()).compare(this->_login))
+	return true;
+    }
+    return false;
   };
 
   bool			validToken() {
+    FILE		*fp;
+    char		readBuffer[4096];
+    Document		d;
+    
+    try {
+      Utils::httpRequest(std::string(URL_SERVLET_CHECKTOKEN + std::string("?token=") + this->_token), TMP_FILE_CHECKTOKEN_REQUEST);
+    } catch (const std::exception &e) {
+      std::cerr << "Error : " << e.what() << std::endl;
+      return false;
+    }
+    if (!(fp = fopen(TMP_FILE_CHECKTOKEN_REQUEST, "rb"))) {
+      std::cerr << "Error while fetching data" << std::endl;
+      return false;
+    }
+    FileReadStream is(fp, readBuffer, sizeof(readBuffer));
+    d.ParseStream(is);
+    if (!d.IsObject()) {
+      std::cerr << "Bad API Result" << std::endl;
+      fclose(fp);
+      return false;
+    }
+    for (Value::ConstValueIterator itr = d["results"].Begin(); itr != d["results"].End(); ++itr) {
+      if (!std::string(itr->GetString()).compare(this->_login))
+	return true;
+    }
     return false;
   };
   

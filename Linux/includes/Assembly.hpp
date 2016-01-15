@@ -65,7 +65,7 @@ public:
       std::cout << "/!\\ You MUST update your BMTech ! Please, go to http://jobertomeu.fr/bmtech" << std::endl;
       exit (-1);
     } else if (atof(d["version"].GetString()) == atof(this->_version.c_str()))
-      std::cout << "\033[32mYou are up-to-date !\033[0m" << std::endl;
+      std::cout << "\033[32mYou are up-to-date !\033[0m (" << d["version"].GetString() << " - " << d["name"].GetString() << ")" << std::endl;
     else {
       std::cout << "WTF ? Are you Marty Mcfly ?" << std::endl;
       std::cout << "Sorry, but you have to go away" << std::endl;
