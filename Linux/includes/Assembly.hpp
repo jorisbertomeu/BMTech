@@ -44,7 +44,7 @@ public:
     char	readBuffer[4096];
     Document	d;
     
-    std::cout << "Checking for update : ";
+    std::cout << "\u2746 Checking for update : ";
     try {
       Utils::httpRequest(this->_updateURL, TMP_FILE_UPDATE_REQUEST);
     } catch (const std::exception &e) {

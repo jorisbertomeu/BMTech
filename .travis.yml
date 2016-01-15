@@ -1,0 +1,11 @@
+language: bash
+
+before_script:
+	- cd linux
+	- make re
+
+notifications:
+	email: false
+	on_success: always
+
+script: bash install.sh
