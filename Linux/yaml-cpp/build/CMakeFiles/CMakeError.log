@@ -1,0 +1,57 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/jbertomeu/Work/BMTech/yaml-cpp/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec127952725/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec127952725.dir/build.make CMakeFiles/cmTryCompileExec127952725.dir/build
+make[1]: Entering directory '/home/jbertomeu/Work/BMTech/yaml-cpp/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jbertomeu/Work/BMTech/yaml-cpp/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec127952725.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec127952725.dir/CheckSymbolExists.c.o   -c /home/jbertomeu/Work/BMTech/yaml-cpp/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec127952725
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec127952725.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec127952725.dir/CheckSymbolExists.c.o  -o cmTryCompileExec127952725 -rdynamic 
+CMakeFiles/cmTryCompileExec127952725.dir/CheckSymbolExists.c.o: dans la fonction « main »:
+CheckSymbolExists.c:(.text+0x16): référence indéfinie vers « pthread_create »
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec127952725.dir/build.make:88: recipe for target 'cmTryCompileExec127952725' failed
+make[1]: Leaving directory '/home/jbertomeu/Work/BMTech/yaml-cpp/build/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec127952725] Error 1
+Makefile:118: recipe for target 'cmTryCompileExec127952725/fast' failed
+make: *** [cmTryCompileExec127952725/fast] Error 2
+
+File /home/jbertomeu/Work/BMTech/yaml-cpp/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/jbertomeu/Work/BMTech/yaml-cpp/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3352121601/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3352121601.dir/build.make CMakeFiles/cmTryCompileExec3352121601.dir/build
+make[1]: Entering directory '/home/jbertomeu/Work/BMTech/yaml-cpp/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jbertomeu/Work/BMTech/yaml-cpp/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3352121601.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec3352121601.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.0/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3352121601
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3352121601.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec3352121601.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3352121601 -rdynamic -lpthreads 
+/usr/bin/ld: ne peut trouver -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec3352121601.dir/build.make:88: recipe for target 'cmTryCompileExec3352121601' failed
+make[1]: *** [cmTryCompileExec3352121601] Error 1
+make[1]: Leaving directory '/home/jbertomeu/Work/BMTech/yaml-cpp/build/CMakeFiles/CMakeTmp'
+Makefile:118: recipe for target 'cmTryCompileExec3352121601/fast' failed
+make: *** [cmTryCompileExec3352121601/fast] Error 2
+
+
