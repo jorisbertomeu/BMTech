@@ -213,6 +213,9 @@ private:
     if (config["token"]) {
       this->_token = std::string(config["token"].as<std::string>());
     }
+    if (config["incoming"]) {
+      this->_incoming = std::string(config["incoming"].as<std::string>());
+    }
     return (true);
   };
   
