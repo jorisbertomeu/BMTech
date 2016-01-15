@@ -1,7 +1,7 @@
 language: bash
 
 before_script:
- - cd linux
+ - cd Linux
  - make re
 
 notifications:
