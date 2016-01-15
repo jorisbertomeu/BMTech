@@ -41,6 +41,8 @@ public:
 		       "Incoming folder destination for AirTech (c)");
     this->addParameter("--airtech:-a", &Parameters::parseAirtech,
 		       "Enable Airtech mechanism - AirDrop Like, multiOS");
+    this->addParameter("--airtech_server:-as", &Parameters::parseAirtechServer,
+		       "Specify Airtech server IP");
     this->addParameter("--help:-h", &Parameters::showHelp,
 		       "Show this Usage");
   };
@@ -236,6 +238,14 @@ private:
     return (1);
   };
 
+  int		parseAirtechServer(int ac, char **argv, int idx) {
+    if (ac > idx + 1)
+      this->_airtechServer = std::string(argv[idx + 1]);
+    else
+      throw (std::logic_error("[-as|--airtech_server] required a server IP"));
+    return (1);
+  };
+  
   int		parseAirtech(int ac, char **argv, int idx) {
     (void) ac;
     (void) argv;
