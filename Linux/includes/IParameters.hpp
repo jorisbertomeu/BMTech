@@ -67,7 +67,8 @@ public:
 	  std::cout << "|";
       }
       std::cout << "]\t\t: " << *(reinterpret_cast<t_parameter*>(*it)->desc) << std::endl;
-    };
+    }
+    std::cout << std::endl << "Written by Joris Bertomeu <joris.bertomeu@epitech.eu> - 2016" << std::endl << std::endl;
   };
   
 protected:
