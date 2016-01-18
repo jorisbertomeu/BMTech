@@ -1,3 +1,13 @@
+//
+// Conf.hh for  in /home/Dieu/Desktop/Work/BMTech/Linux
+// 
+// Made by Dieu Dieu
+// Login   <Dieu@epitech.net>
+// 
+// Started on  Mon Jan 18 15:20:26 2016 Dieu Dieu
+// Last update Mon Jan 18 15:20:27 2016 Dieu Dieu
+//
+
 #ifndef		_CONF_HH_
 # define	_CONF_HH_
 

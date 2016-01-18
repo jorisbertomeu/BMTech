@@ -1,3 +1,13 @@
+//
+// Utils.hpp for  in /home/Dieu/Desktop/Work/BMTech/Linux
+// 
+// Made by Dieu Dieu
+// Login   <Dieu@epitech.net>
+// 
+// Started on  Mon Jan 18 15:20:12 2016 Dieu Dieu
+// Last update Mon Jan 18 15:20:14 2016 Dieu Dieu
+//
+
 #ifndef		_UTILS_HPP_
 # define	_UTILS_HPP_
 

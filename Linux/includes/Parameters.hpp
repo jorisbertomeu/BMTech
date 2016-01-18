@@ -1,3 +1,13 @@
+//
+// Parameters.hpp for  in /home/Dieu/Desktop/Work/BMTech/Linux
+// 
+// Made by Dieu Dieu
+// Login   <Dieu@epitech.net>
+// 
+// Started on  Mon Jan 18 15:20:21 2016 Dieu Dieu
+// Last update Mon Jan 18 15:42:25 2016 Dieu Dieu
+//
+
 #ifndef		_PARAMETERS_HPP_
 # define	_PARAMETERS_HPP_
 
@@ -26,17 +36,21 @@ private:
   std::string	_incoming;
   bool		_airtech;
   std::string	_airtechServer;
+  bool		_isSudo;
   
 public:
   explicit	Parameters() : IParameters(this) {
     setlocale(LC_ALL, "");
     this->_airtech = false;
+    this->_isSudo = false;
     this->addParameter("--config:-c", &Parameters::parseConfigFile,
 		       "Allow to give a YML config file with all options described");
     this->addParameter("--login:-l", &Parameters::parseLogin,
 		       "Specify student's login for authentication");
     this->addParameter("--token:-t", &Parameters::parseToken,
 		       "You MUST Specify your token API associated to your login");
+    this->addParameter("--sudo:-s", &Parameters::parseSudo,
+		       "More details with sudo flag. You must be sudoer");
     this->addParameter("--incoming:-i", &Parameters::parseIncoming,
 		       "Incoming folder destination for AirTech (c)");
     this->addParameter("--airtech:-a", &Parameters::parseAirtech,
@@ -45,6 +59,10 @@ public:
 		       "Specify Airtech server IP");
     this->addParameter("--help:-h", &Parameters::showHelp,
 		       "Show this Usage");
+  };
+
+  bool		getIsSudo() const {
+    return (this->_isSudo);
   };
   
   void		verify() {
@@ -222,6 +240,15 @@ private:
     return (1);
   };
 
+  int		parseSudo(int ac, char **argv, int idx) {
+    (void) ac;
+    (void) argv;
+    (void) idx;
+    
+    this->_isSudo = true;
+    return (0);
+  };
+
   int		parseToken(int ac, char **argv, int idx) {
     if (ac > idx + 1)
       this->_token = std::string(argv[idx + 1]);
@@ -262,6 +289,7 @@ private:
     exit(0);
     return (0);
   };
+
 };
 
 #endif

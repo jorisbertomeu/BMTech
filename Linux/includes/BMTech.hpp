@@ -1,3 +1,13 @@
+//
+// BMTech.hpp for  in /home/Dieu/Desktop/Work/BMTech/Linux
+// 
+// Made by Dieu Dieu
+// Login   <Dieu@epitech.net>
+// 
+// Started on  Mon Jan 18 15:20:37 2016 Dieu Dieu
+// Last update Mon Jan 18 15:42:53 2016 Dieu Dieu
+//
+
 #ifndef		_BMTECH_HPP_
 # define	_BMTECH_HPP_
 
@@ -31,7 +41,14 @@ public:
   };
 
   void		start() {
-
+    while (true) {
+      if (this->_parameters.getIsSudo())
+	system("sudo iwlist wlo1 scan | grep 'Address\\|Quality' > .results");
+      else
+	system("iwlist wlo1 scan | grep 'Address\\|Quality' > .results");
+      system("wc -l .results");
+      sleep(9);
+    }
   };
 };
 

@@ -1,3 +1,13 @@
+//
+// IParameters.hpp for  in /home/Dieu/Desktop/Work/BMTech/Linux
+// 
+// Made by Dieu Dieu
+// Login   <Dieu@epitech.net>
+// 
+// Started on  Mon Jan 18 15:20:40 2016 Dieu Dieu
+// Last update Mon Jan 18 15:20:41 2016 Dieu Dieu
+//
+
 #ifndef		_IPARAMETERS_HPP_
 # define	_IPARAMETERS_HPP_
 
