@@ -5,7 +5,7 @@
 // Login   <Dieu@epitech.net>
 // 
 // Started on  Mon Jan 18 15:20:21 2016 Dieu Dieu
-// Last update Mon Jan 18 15:42:25 2016 Dieu Dieu
+// Last update Mon Jan 18 16:58:31 2016 Dieu Dieu
 //
 
 #ifndef		_PARAMETERS_HPP_
@@ -59,6 +59,10 @@ public:
 		       "Specify Airtech server IP");
     this->addParameter("--help:-h", &Parameters::showHelp,
 		       "Show this Usage");
+  };
+
+  std::string	getLogin() const {
+    return (this->_login);
   };
 
   bool		getIsSudo() const {

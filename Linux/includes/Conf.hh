@@ -5,7 +5,7 @@
 // Login   <Dieu@epitech.net>
 // 
 // Started on  Mon Jan 18 15:20:26 2016 Dieu Dieu
-// Last update Mon Jan 18 15:20:27 2016 Dieu Dieu
+// Last update Mon Jan 18 17:00:22 2016 Dieu Dieu
 //
 
 #ifndef		_CONF_HH_
@@ -15,10 +15,12 @@
 # define	TMP_FILE_UPDATE_REQUEST		"/tmp/.bmtech_update"
 # define	TMP_FILE_GETLOGINS_REQUEST	"/tmp/.bmtech_logins"
 # define	TMP_FILE_CHECKTOKEN_REQUEST	"/tmp/.bmtech_token"
+# define	TMP_FILE_MAIN_REQUEST		"/tmp/.bmtech_main"
 
 /* SERVLETS URL DEFINES */
 # define	URL_SERVLET_GETLOGINS		"http://jobertomeu.fr/bmtech/servlet/getLogins.php"
 # define	URL_SERVLET_CHECKTOKEN		"http://jobertomeu.fr/bmtech/servlet/checkToken.php"
+# define	URL_SERVLET_SETCONNECTED	"http://jobertomeu.fr/setConnected.php"
 
 /* STUFF DEFINES */
 # define	D_VERSION			"0.5"
