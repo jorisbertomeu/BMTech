@@ -5,7 +5,7 @@
 // Login   <Dieu@epitech.net>
 // 
 // Started on  Mon Jan 18 15:20:21 2016 Dieu Dieu
-// Last update Mon Jan 18 16:58:31 2016 Dieu Dieu
+// Last update Tue Jan 19 15:17:10 2016 Dieu Dieu
 //
 
 #ifndef		_PARAMETERS_HPP_
@@ -69,6 +69,10 @@ public:
     return (this->_isSudo);
   };
   
+  std::string	getToken() const {
+    return (this->_token);
+  };
+
   void		verify() {
     bool	validCF = false, underline = false;
     int		tests = 0;
@@ -98,10 +102,10 @@ public:
 	      << ((this->_configFile.length() == 0) ? "<empty>" : this->_configFile) << "\033[0m" << std::endl;
     
     //Checking for Login exists
-    this->genericCheck(this->_login, "Login integrity", &Parameters::validLogin);
+    tests += this->genericCheck(this->_login, "Login integrity", &Parameters::validLogin);
 
     //Checking for Token API for this login
-    this->genericCheck(this->_token, "Token validity", &Parameters::validToken);
+    tests += this->genericCheck(this->_token, "Token validity", &Parameters::validToken);
     
     //Checking for incoming folder for AirTech
     this->genericCheck(this->_incoming, "Incoming Folder", &Parameters::validIncoming);

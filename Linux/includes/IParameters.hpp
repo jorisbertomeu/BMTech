@@ -5,7 +5,7 @@
 // Login   <Dieu@epitech.net>
 // 
 // Started on  Mon Jan 18 15:20:40 2016 Dieu Dieu
-// Last update Mon Jan 18 15:20:41 2016 Dieu Dieu
+// Last update Tue Jan 19 15:14:46 2016 Dieu Dieu
 //
 
 #ifndef		_IPARAMETERS_HPP_
@@ -90,7 +90,7 @@ protected:
     this->_ptrFunc.push_back(this->generatePtrFunc(option, ptr, desc));
   };
 
-  void		genericCheck(const std::string &param, const std::string &display,
+  int		genericCheck(const std::string &param, const std::string &display,
 			     bool (Parameters::*func)()) {
     bool	underline = false;
 
@@ -108,6 +108,7 @@ protected:
     std::cout << "\033[0m " << display << "\t\t : " << ((underline) ? "\033[33m\033[4m" : "")
 	      << ((param.length() == 0) ? "<empty>" :
 		  param) << "\033[0m"  << std::endl;
+    return ((underline) ? 1 : 0);
   };
   
   explicit	IParameters(Parameters *me) : _me(me) {};
